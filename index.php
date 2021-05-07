@@ -11,14 +11,19 @@
 <form method="post">
     <input type="text" name="Amount" placeholder="Luong tien dau tu ban dau"/>
     <input type="text" name="Rate" placeholder="Lai suat nam"/>
-  <input type="submit" name="submit" value="Tinh" />
+   <input type="text" name="Year" placeholder="So nam"/>
+    <input type="submit" name="submit" value="Tinh" />
 </form>
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     $Money = $_POST["Amount"];
     $Interest = $_POST["Rate"];
-    $Future = $Money + ($Money * $Interest);
-    echo  $Future;
+    $Year = $_POST["Year"];
+
+    for ($i = 1; $i <= $Year; $i++) {
+        $Future = $Money + ($Money * ($Interest / 100));
+         $Money = $Future;
+    } echo $Money;
 }
 ?>
 
